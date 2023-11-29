@@ -1,0 +1,24 @@
+﻿@page "/Livro/{slug}/{id}"
+@model BookShellAppWeb.Pages.DetalhesModel
+
+
+<h2 class="my-3">@Model.Livros.Nome</h2>
+
+<div class="row">
+	<div class="col-4">
+		<img class="img-fluid rounded" src="@Model.Livros.ImagemUri">
+	</div>
+
+	<div class="col-6">
+		<h4 class="my-3">Sobre:</h4>
+		<p>@Model.Livros.Descricao</p>
+		<h4 class="my-3">Mais Informações:</h4>
+		<ul>
+	
+				<li><label asp-for="Livros.Valor"></label>:@Html.DisplayFor(model => model.Livros.Valor)</li>
+			<li><label asp-for="Livros.EntregaExpressa"></label>: @Html.DisplayFor(model => model.Livros.EntregaExpressaFormatada)</li>
+			<li><label asp-for="Livros.DataCadastro"></label>: @Html.DisplayFor(model => model.Livros.DataCadastro)</li>
+		</ul>
+		<a class="btn my-3 btn-primary" asp-page="/Index1" asp-route-id="@Model.Livros.LivrosId">Editar</a>
+	</div>
+</div>

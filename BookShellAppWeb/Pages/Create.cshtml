@@ -1,0 +1,55 @@
+﻿@page
+@model BookShellAppWeb.Pages.CreateModel
+
+
+<div class="row pt-5">
+	<div class="col-md-4">
+		<form method="post">
+			<h4>Inclusão de Livros</h4>
+			<hr />
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	       <div class="form-group">
+			   <label asp-for="Livros.Nome" class="control-label"></label>
+				<input asp-for="Livros.Nome" class="form-control" />
+				<span asp-validation-for="Livros.Nome" class="text-danger"></span>
+		   </div>
+			<div class="form-group">
+				<label asp-for="Livros.Descricao" class="control-label"></label>
+				<input asp-for ="Livros.Descricao" class="form-control" />
+				<span asp-validation-for="Livros.Descricao" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Livros.ImagemUri" class="control-label"></label>
+				<input asp-for="Livros.ImagemUri" class="form-control" />
+				<span asp-validation-for="Livros.ImagemUri" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Livros.Valor" class="control-label"></label>
+				<input asp-for="Livros.Valor" class="form-control" />
+				<span asp-validation-for="Livros.Valor" class="text-danger"></span>
+			</div>
+			
+
+		    <div class="form-group mt-3 mb-3">
+				<input class="form-check-input" asp-for="Livros.EntregaExpressa" />
+				<label asp-for="Livros.EntregaExpressa"></label>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Livros.DataCadastro" class="control-label"></label>
+				<input asp-for="Livros.DataCadastro" class="form-control" />
+				<span asp-validation-for="Livros.DataCadastro" class="text-danger"></span>
+			</div>
+		   <div class="form-group mt-4">
+			   <input type="submit" value="Salvar" class="btn btn-primary"/>
+		   </div>
+		</form>
+	</div>
+</div>
+
+@section Scripts{
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
