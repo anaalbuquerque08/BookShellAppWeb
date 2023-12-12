@@ -10,5 +10,6 @@ public interface ILivroService
 	void Incluir(Livros livros);
 	void Alterar(Livros livros);
 	void Excluir(int id);
-
+	IList<Marca> ObterTodasMarcas();
+	Marca ObterMarca(int id);
 }

@@ -1,32 +1,35 @@
 using BookShellAppWeb.Models;
 using BookShellAppWeb.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookShellAppWeb.Pages
 {
-    public class Index1Model : PageModel
+	[Authorize]
+    public class EditModel : PageModel
     {
 		private ILivroService _service;
 
-		public Index1Model(ILivroService service)
+		public EditModel(ILivroService service)
 		{
 			_service = service;
 		}
 		[BindProperty]
 		public Livros Livros { get; set; }
+		public SelectList MarcaOptionItems { get; private set; }
 
-		public IActionResult OnGet(int id)
+		public void OnGet(int id)
 		{
 			Livros = _service.Obter(id);
 
-			if (Livros == null)
-			{
-				return NotFound();
-			}
-
-			return Page();
+			MarcaOptionItems = new SelectList(_service.ObterTodasMarcas(),
+												nameof(Marca.MarcaId),
+												nameof(Marca.Descricao));
 		}
+
+	
 		public IActionResult OnPost()
 		{
 
@@ -37,6 +40,8 @@ namespace BookShellAppWeb.Pages
 			//alteração 
 			_service.Alterar(Livros);
 
+			TempData["TempMensagemSucesso"] = true;
+
 			return RedirectToPage("/Index");
 		}
 
@@ -44,6 +49,8 @@ namespace BookShellAppWeb.Pages
 		{
 			//exclusão 
 			_service.Excluir(Livros.LivrosId);
+
+
 
 			return RedirectToPage("/Index");
 		}

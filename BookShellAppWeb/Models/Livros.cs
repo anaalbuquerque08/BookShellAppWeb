@@ -4,7 +4,6 @@ namespace BookShellAppWeb.Models;
 
 public class Livros
 {
-
     public int LivrosId { get; set; }
 
     [Required(ErrorMessage ="Campo 'Nome' obrigatório.")]
@@ -38,4 +37,7 @@ public class Livros
     [DisplayFormat(DataFormatString ="{0:MMMM \\de yyyy}")]
     [DataType("month")]
     public DateTime DataCadastro { get; set; }
+
+    [Display(Name ="Marca")]
+    public int? MarcaId { get; set; }
 }

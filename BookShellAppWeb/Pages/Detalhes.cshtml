@@ -18,7 +18,15 @@
 				<li><label asp-for="Livros.Valor"></label>:@Html.DisplayFor(model => model.Livros.Valor)</li>
 			<li><label asp-for="Livros.EntregaExpressa"></label>: @Html.DisplayFor(model => model.Livros.EntregaExpressaFormatada)</li>
 			<li><label asp-for="Livros.DataCadastro"></label>: @Html.DisplayFor(model => model.Livros.DataCadastro)</li>
+			@if (Model.DescricaoMarca is not null)
+			{
+			<li><label asp-for="Livros.MarcaId"></label>: @Html.DisplayFor(model => model.DescricaoMarca)</li>
+			}
 		</ul>
-		<a class="btn my-3 btn-primary" asp-page="/Index1" asp-route-id="@Model.Livros.LivrosId">Editar</a>
+		@if (User.Identity.IsAuthenticated)
+		{
+	     <a class="btn my-3 btn-primary" asp-page="/Edit" asp-route-id="@Model.Livros.LivrosId">Editar</a>
+		}
+		
 	</div>
 </div>

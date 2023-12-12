@@ -7,25 +7,32 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookShellAppWeb.Pages
 {
-    public class DetalhesModel : PageModel
-    {
-        private ILivroService _service;
-        public DetalhesModel(ILivroService service)
-        {
-            _service = service;
-        }
-        public Livros Livros { get; private set; }
-        public IActionResult OnGet(int id)
-        {
-            Livros = _service.Obter(id);
+	public class DetalhesModel : PageModel
+	{
+		private ILivroService _service;
+		public string DescricaoMarca { get; set; }
 
-            if (Livros == null)
-            {
-                return NotFound();
-            }
+		public DetalhesModel(ILivroService service)
+		{
+			_service = service;
+		}
+		public Livros Livros { get; private set; }
+		public IActionResult OnGet(int id)
+		{
+			Livros = _service.Obter(id);
+			if (Livros.MarcaId is not null)
+			{
+				DescricaoMarca = _service.ObterMarca(Livros.MarcaId.Value).Descricao;
 
-            return Page();
-        }
-    }
+			}
+
+			if (Livros == null)
+			{
+				return NotFound();
+			}
+
+			return Page();
+		}
+	}
 }
 

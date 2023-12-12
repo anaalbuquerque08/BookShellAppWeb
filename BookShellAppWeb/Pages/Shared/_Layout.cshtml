@@ -33,19 +33,23 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-page="/QuemSomos"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Quem Somos</font></font></a>
                         </li>
-
-                        <li class="nav-item">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                         <li class="nav-item">
                             <a class="nav-link" asp-page="/Create"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Inclusão</font></font></a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/Marcas/Index"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Marca</font></font></a>
+                        </li>
+                        }
+                    
 
                         <li class="nav-item">
                             <a class="nav-link" asp-page="/Privacy"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Privacidade</font></font></a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Procurar">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i class="fa-solid fa-magnifying-glass fa-fade"></i></font></font></button>
-                    </form>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

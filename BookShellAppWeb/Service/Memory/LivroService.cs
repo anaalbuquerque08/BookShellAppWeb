@@ -1,9 +1,9 @@
 ﻿using BookShellAppWeb.Models;
 
-namespace BookShellAppWeb.Service;
+namespace BookShellAppWeb.Service.Memory;
 
-	public class LivroService: ILivroService
-	{
+public class LivroService : ILivroService
+{
 	public LivroService()
 		=> CarregarListaInicial();
 
@@ -11,7 +11,7 @@ namespace BookShellAppWeb.Service;
 
 	private void CarregarListaInicial()
 	{
-	_livros = new List<Livros>()
+		_livros = new List<Livros>()
 	{
 		new Livros
 		{
@@ -67,21 +67,21 @@ namespace BookShellAppWeb.Service;
 
 	};
 	}
-	
 
-		public IList<Livros> ObterTodos()
-		=> _livros;
 
-		public Livros Obter(int id)
-		=> ObterTodos().SingleOrDefault(item => item.LivrosId == id);
+	public IList<Livros> ObterTodos()
+	=> _livros;
 
-    public void Incluir(Livros livros)
+	public Livros Obter(int id)
+	=> ObterTodos().SingleOrDefault(item => item.LivrosId == id);
+
+	public void Incluir(Livros livros)
 	{
 		var proximoId = _livros.Max(item => item.LivrosId) + 1;
 		livros.LivrosId = proximoId;
 		_livros.Add(livros);
 	}
-	 public void Alterar(Livros livros)
+	public void Alterar(Livros livros)
 	{
 		var livroEncontrado = _livros.SingleOrDefault(item => item.LivrosId == livros.LivrosId);
 		livroEncontrado.Nome = livros.Nome;
@@ -97,7 +97,20 @@ namespace BookShellAppWeb.Service;
 		var livroEncontrado = Obter(id);
 		_livros.Remove(livroEncontrado);
 	}
+
+	public IList<Marca> ObterTodasMarcas()
+	{
+		throw new NotImplementedException();
 	}
 
-	
+	public Marca ObterMarca(int id)
+	{
+		throw new NotImplementedException();
+	}
+}
+
+
+
+
+
 
